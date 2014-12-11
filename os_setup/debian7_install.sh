@@ -17,7 +17,7 @@ check() {
 
 
 update_kernel() {
-    echo "deb http://http.debian.net/debian wheezy-backports main" >> /etc/apt/sources.list
+    echo 'deb http://http.debian.net/debian wheezy-backports main' | sudo tee --append /etc/apt/sources.list > /dev/null
     sudo apt-get update
     sudo apt-get install -t wheezy-backports linux-image-amd64
 }
@@ -140,8 +140,9 @@ install_program_lang() {
     # use gvm
     zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
     source "/home/$cuser/.gvm/scripts/gvm"
-    gvm install go1.3.3
-    gvm use 1.3.3 --default
+    GOVERSION="1.3.3"
+    gvm install go${GOVERSION}
+    gvm use ${GOVERSION} --default
 
 }
 
