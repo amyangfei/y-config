@@ -42,7 +42,7 @@ other_tools() {
 
     # others
     # ack
-    suda apt-get install -y ack-grep
+    sudo apt-get install -y ack-grep
     sudo dpkg-divert --local --divert /usr/bin/ack --rename --add /usr/bin/ack-grep
     # tree
     sudo apt-get install -y tree
