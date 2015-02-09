@@ -9,6 +9,11 @@ string_replace() {
 
 
 check() {
+    if [ $cuser == "root" ];then
+        echo "should not run as root"
+        exit 1
+    fi
+
     [ -e "/usr/bin/lsb_release" ] && [ $(lsb_release -i|awk '{print $3}') == "Debian" ] && return
 
     echo "wrong os type"
@@ -28,7 +33,7 @@ basic() {
     # update_kernel $*
 
     sudo apt-get update
-    sudo apt-get install build-essential libncurses5-dev git vim bison
+    sudo apt-get install -y build-essential libncurses5-dev git vim bison
     mkdir -p $install_tmpdir
 }
 
@@ -80,7 +85,6 @@ install_tools() {
     sudo make install
 
     cd $install_tmpdir
-    wget http://dailyuse.qiniudn.com/libevent-2.0.21-stable.tar.gz
     wget http://downloads.sourceforge.net/project/tmux/tmux/tmux-1.8/tmux-1.8.tar.gz
     tar xvzf tmux-1.8.tar.gz
     cd tmux-1.8
