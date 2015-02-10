@@ -139,7 +139,7 @@ EOF
 }
 
 
-install_program_lang() {
+install_golang() {
     # golang
     # use gvm
     zsh < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
@@ -147,9 +147,21 @@ install_program_lang() {
     GOVERSION="1.3.3"
     gvm install go${GOVERSION}
     gvm use ${GOVERSION} --default
-
 }
 
+install_python() {
+    sudo apt-get install -y python-dev
+    cd $install_tmpdir
+    wget https://bootstrap.pypa.io/get-pip.py
+    sudo python get-pip.py
+    sudo pip install virtualenv
+}
+
+
+install_program_lang() {
+    install_golang $*
+    install_python $*
+}
 
 init() {
     echo "starting setup debian environment"
