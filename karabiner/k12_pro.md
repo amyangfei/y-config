@@ -1,0 +1,2 @@
+- Mapping right command -> fn
+- Change `Press Fn to **Do Nothing**`
